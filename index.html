@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -208,8 +208,15 @@ $("date").max = max.toISOString().split("T")[0];
 
 /* ================= UPI PAYMENT ================= */
 $("payBtn").onclick = ()=>{
-  window.location.href="upi://pay?pa=Q893088292@ybl&pn=SmartJatra&am=50&cu=INR";
+
+  // first show button
   $("mapBtn").style.display="block";
+
+  // then open UPI after small delay
+  setTimeout(()=>{
+    window.location.href="upi://pay?pa=Q893088292@ybl&pn=SmartJatra&am=50&cu=INR";
+  },300);
+
 };
 
 
@@ -266,7 +273,9 @@ $("confirmBtn").onclick=()=>{
 
   navigator.geolocation.getCurrentPosition(pos=>{
 
-    const gps=pos.coords.latitude+","+pos.coords.longitude;
+    const lat = pos.coords.latitude;
+const lng = pos.coords.longitude;
+const gps = `https://maps.google.com/?q=${lat},${lng}`;
 
     const text=
 `SMART JATRA BOOKING
