@@ -129,6 +129,25 @@ footer{
 .row input{
   flex:1;
 }
+  /* Placeholder for Date and Time inputs */
+input[type="date"]::before {
+  content: "Date";
+  color: #666;
+  margin-right: 10px;
+}
+
+input[type="time"]::before {
+  content: "Time";
+  color: #666;
+  margin-right: 10px;
+}
+
+/* Hide the label when a value is selected */
+input:focus::before,
+input:valid::before {
+  display: none;
+}
+p
 </style>
 </head>
 <body>
