@@ -251,21 +251,24 @@ $("payBtn").onclick = ()=>{
 
 
 /* ================= POST PAYMENT MAP BUTTON ================= */
-$("mapBtn").onclick = ()=>{
-  navigator.geolocation.getCurrentPosition(pos=>{
-    const lat=pos.coords.latitude;
-    const lng=pos.coords.longitude;
+$("mapBtn").onclick = () => {
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      const lat = pos.coords.latitude;
+      const lng = pos.coords.longitude;
+      const link = `https://maps.google.com/?q=${lat},${lng}`;
 
-    const link=`https://maps.google.com/?q=${lat},${lng}`;
+      const msg = encodeURIComponent(
+        "Booking Confirmed! Please guide me to the pickup stand. My Location: " + link
+      );
 
-    const msg=encodeURIComponent(
-      "Booking Confirmed! Please guide me to the pickup stand. My Location: "+link
-    );
-
-    window.open(`https://wa.me/919564681311?text=${msg}`);
-  });
+      window.open(`https://wa.me/919564681311?text=${msg}`);
+    },
+    err => {
+      alert("Location allow না করলে map open হবে না");
+    }
+  );
 };
-
 
 /* ================= SPAM PROTECTION ================= */
 let lastSubmit=0;
